@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 
 use App\Profile;
 
+// 更新履歴用追記
+use App\Log;
+use Carbon\Carbon;
+
 class ProfileController extends Controller
 {
     //以下を追記
@@ -47,6 +51,12 @@ class ProfileController extends Controller
         
         $profile->fill($profile_form)->save();
         
-        return redirect('admin/profile/edit');
+        // 更新履歴用追記
+        $log = new Log;
+        $log->profile_id = $profile->id;
+        $log->edited_at = Carbon::now();
+        $log->save();
+        
+        return redirect('admin/profile/');
     }
 }
