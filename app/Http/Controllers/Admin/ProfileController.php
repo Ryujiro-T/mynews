@@ -57,6 +57,8 @@ class ProfileController extends Controller
         $log->edited_at = Carbon::now();
         $log->save();
         
-        return redirect('admin/profile/');
+        $id = (string) $request->id;
+        $path = 'admin/profile/edit?id='.$id;
+        return redirect($path);
     }
 }

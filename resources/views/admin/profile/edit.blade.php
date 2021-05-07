@@ -49,7 +49,7 @@
                         <h2>更新履歴</h2>
                         <ul class="list-group">
                             @if ($profile_form->logs !=NULL)
-                            @foreach ($profile_form->logs at $log)
+                            @foreach ($profile_form->logs as $log)
                             <li class="list-group-item">{{ $log->edited_at }}</li>
                             @endforeach
                             @endif
